@@ -6,15 +6,14 @@ contract Attend {
     mapping(address => bool) public hasAttended;
 
     function markAtendance() public {
-        require(!hasAttended[msg.sender], "Already marked"); // Check if the sender has already voted
-
+        require(!hasAttended[msg.sender], "Already marked");
         totalAttendance++;
         hasAttended[msg.sender] = true;
 
         if (totalAttendance > 100) {
-            revert("marking limit exceeded"); // Revert the transaction if the voting limit is exceeded
+            revert("marking limit exceeded"); 
         }
 
-        assert(totalAttendance <= 100); // Ensure that the total votes does not exceed the limit
+        assert(totalAttendance <= 100); 
     }
 }
